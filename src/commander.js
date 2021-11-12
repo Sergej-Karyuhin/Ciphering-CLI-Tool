@@ -50,7 +50,7 @@ function validateFlagParam(action) {
     return;
   }
   console.error('Error: valid values for flag Y are 0 or 1');
-  process.exit(1);
+  process.exit(6);
 }
 
 const commander = () => {

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { Transform, pipeline } from 'stream';
+
 import modem from './modem/modem.js';
 
 export const validateInputAndOutput = (input, output) => {
