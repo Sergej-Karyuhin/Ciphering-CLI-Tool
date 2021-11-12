@@ -1,7 +1,7 @@
 # Ciphering-CLI-Tool
 ### Installation and Usage
 - use git-clone and go to the folder
-- checkout to task1 branch
+- checkout to branch `task1`
 - use npm i (optional, for prettier)
 - use cli (see arguments below)
 
