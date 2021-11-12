@@ -1,6 +1,9 @@
 {
     "name": "ciphering-cli-tool",
     "version": "1.0.0",
+    "scripts": {
+        "format": "prettier --write {,*/**/}*.{js,json}"
+    },
     "dependencies": {
         "prettier": "^2.4.1"
     }
