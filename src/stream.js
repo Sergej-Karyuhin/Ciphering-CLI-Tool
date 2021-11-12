@@ -11,7 +11,7 @@ export const validateInputAndOutput = (input, output) => {
       }
 
       try {
-        const type = (fileType === 'input') ? fs.constants.R_OK : fs.constants.W_OK;
+        const type = fileType === 'input' ? fs.constants.R_OK : fs.constants.W_OK;
         fs.accessSync(fileName, type);
       } catch (err) {
         console.error('Error: file permission.', err);

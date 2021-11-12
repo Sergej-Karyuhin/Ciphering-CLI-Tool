@@ -19,7 +19,7 @@ function getInput(i, arr, config) {
 function getOutput(i, arr, config) {
   if (arr[i] === '-o' || arr[i] === '--output') {
     if (config) {
-      console.error(`Error: '-o' or '--output' flag can only be used once`); 
+      console.error(`Error: '-o' or '--output' flag can only be used once`);
       process.exit(3);
     }
     return arr[i + 1];
