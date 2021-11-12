@@ -8,3 +8,9 @@ const decode = {
   R0: converter(-8),
   R1: converter(8),
 };
+
+const modem = (text, config) => {
+  return decode[config](text);
+};
+
+export default modem;
