@@ -1,4 +1,4 @@
-import converter from './converter.js';
+import converter from './converter/converter.js';
 import enAtbash from './enAtbash.js';
 
 const decode = {
