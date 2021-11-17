@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "format": "prettier --write {,*/**/}*.{js,json}",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "prettier": "^2.4.1"
