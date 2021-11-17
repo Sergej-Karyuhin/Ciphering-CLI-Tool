@@ -2,8 +2,8 @@ import fs from 'fs';
 import commander from '../commander.js';
 import { useStream, validateInputAndOutput } from '../stream.js';
 
-const NODE_PATH = 'C:\\Program Files\\nodejs\\node.exe';
-const APP_PATH = 'D:\\Git\\node.js\\RSS-task1\\src\\index';
+const NODE_PATH = process.argv[0];
+const APP_PATH = process.argv[0].split('RSS-task1')[0].concat(`\\src\\index`);
 const INPUT_OUTPUT_PARAMS = [
   '-i',
   './text/input.txt',
