@@ -34,7 +34,7 @@ async function checkTransform(thunkString) {
   await expect(fileAfterTransform).toBe(fileBeforeTransform.concat(thunkString));
 }
 
-test('1', async () => {
+test('Test case #1 from description Task-1', async () => {
   const cliArgs = [
     '-c',
     'C1-C1-R0-A',
@@ -51,7 +51,7 @@ test('1', async () => {
   await checkTransform(thunkString);
 });
 
-test('2', async () => {
+test('Test case #2 from description Task-1', async () => {
   const cliArgs = [
     '-c',
     'C1-C0-A-R1-R0-A-R0-R0-C1-A',
@@ -65,5 +65,39 @@ test('2', async () => {
   ];
 
   const thunkString = `Vhgw gw wkmxkv. Ckwwoik onauv "_" wqcnad!`;
+  await checkTransform(thunkString);
+});
+
+test('Test case #3 from description Task-1', async () => {
+  const cliArgs = [
+    '-c',
+    'A-A-A-R1-R0-R0-R0-C1-C1-A',
+    ...INPUT_OUTPUT_PARAMS,
+  ];
+
+  process.argv = [
+    NODE_PATH,
+    APP_PATH,
+    ...cliArgs,
+  ];
+
+  const thunkString = `Hvwg wg gsqfsh. Asggous opcih "_" gmapcz!`;
+  await checkTransform(thunkString);
+});
+
+test('Test case #4 from description Task-1', async () => {
+  const cliArgs = [
+    '-c',
+    'C1-R1-C0-C0-A-R0-R1-R1-A-C1',
+    ...INPUT_OUTPUT_PARAMS,
+  ];
+
+  process.argv = [
+    NODE_PATH,
+    APP_PATH,
+    ...cliArgs,
+  ];
+
+  const thunkString = `This is secret. Message about "_" symbol!`;
   await checkTransform(thunkString);
 });
