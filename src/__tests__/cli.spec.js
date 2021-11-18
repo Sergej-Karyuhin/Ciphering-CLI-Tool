@@ -11,6 +11,14 @@ const INPUT_OUTPUT_PARAMS = [
   './text/output.txt',
 ];
 
+const App = () => {
+  const { config, input, output } = commander();
+  validateInputAndOutput(input, output);
+  useStream(input, output, config);
+};
+
+const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
 async function readFile(path) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', function (err, data) {
@@ -24,11 +32,7 @@ async function readFile(path) {
 
 async function checkTransform(thunkString) {
   const fileBeforeTransform = await readFile("text/output.txt");
-
-  const { config, input, output } = commander();
-  validateInputAndOutput(input, output);
-  useStream(input, output, config);
-      
+  App();
   await new Promise(resolve => setTimeout(resolve, 1000));
   const fileAfterTransform = await readFile("text/output.txt");
   await expect(fileAfterTransform).toBe(fileBeforeTransform.concat(thunkString));
@@ -100,4 +104,95 @@ test('Test case #4 from description Task-1', async () => {
 
   const thunkString = `This is secret. Message about "_" symbol!`;
   await checkTransform(thunkString);
+});
+
+test('Test case #1 from description Task-2', () => {
+  const cliArgs = [
+    '-c',
+    'C1',
+    '-c',
+    'C1',
+    ...INPUT_OUTPUT_PARAMS,
+  ];
+
+  process.argv = [
+    NODE_PATH,
+    APP_PATH,
+    ...cliArgs,
+  ];
+
+  App();
+  expect(mockExit).toHaveBeenCalledWith(1);
+});
+
+test('Test case #2 from description Task-2', () => {
+  const cliArgs = [
+    ...INPUT_OUTPUT_PARAMS,
+  ];
+
+  process.argv = [
+    NODE_PATH,
+    APP_PATH,
+    ...cliArgs,
+  ];
+
+  App();
+  expect(mockExit).toHaveBeenCalledWith(5);
+});
+
+test('Test case #3 from description Task-2', () => {
+  const cliArgs = [
+    '-c',
+    'C1',
+    '-i',
+    './foo.txt',
+    '-o',
+    './text/output.txt',
+  ];
+
+  process.argv = [
+    NODE_PATH,
+    APP_PATH,
+    ...cliArgs,
+  ];
+
+  App();
+  expect(mockExit).toHaveBeenCalledWith(7);
+});
+
+test('Test case #4 from description Task-2', () => {
+  const cliArgs = [
+    '-c',
+    'C1',
+    '-i',
+    './text/input.txt',
+    '-o',
+    './foo.txt',
+  ];
+
+  process.argv = [
+    NODE_PATH,
+    APP_PATH,
+    ...cliArgs,
+  ];
+
+  App();
+  expect(mockExit).toHaveBeenCalledWith(7);
+});
+
+test('Test case #5 from description Task-2', () => {
+  const cliArgs = [
+    '-c',
+    'foo',
+    ...INPUT_OUTPUT_PARAMS,
+  ];
+
+  process.argv = [
+    NODE_PATH,
+    APP_PATH,
+    ...cliArgs,
+  ];
+
+  App();
+  expect(mockExit).toHaveBeenCalledWith(5);
 });

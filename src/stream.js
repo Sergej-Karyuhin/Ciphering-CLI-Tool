@@ -8,7 +8,7 @@ export const validateInputAndOutput = (input, output) => {
     if (fileName) {
       if (!fs.existsSync(fileName)) {
         console.error('Error: file does not exist.');
-        process.exit(1);
+        process.exit(7);
       }
 
       try {
@@ -16,7 +16,7 @@ export const validateInputAndOutput = (input, output) => {
         fs.accessSync(fileName, type);
       } catch (err) {
         console.error('Error: file permission.', err);
-        process.exit(1);
+        process.exit(8);
       }
     }
   };
