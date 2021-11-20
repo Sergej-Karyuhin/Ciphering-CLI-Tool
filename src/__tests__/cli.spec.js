@@ -87,6 +87,9 @@ test('Test case #3 from description Task-2', () => {
 
   App();
   expect(mockExit).toHaveBeenCalledWith(7);
+  fs.unlink('./foo.txt', (err) => {
+    if(err) throw err;
+  });
 });
 
 test('Test case #4 from description Task-2', () => {
@@ -95,6 +98,9 @@ test('Test case #4 from description Task-2', () => {
 
   App();
   expect(mockExit).toHaveBeenCalledWith(7);
+  fs.unlink('./foo.txt', (err) => {
+    if(err) throw err;
+  });
 });
 
 test('Test case #5 from description Task-2', () => {
